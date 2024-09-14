@@ -8,7 +8,6 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
-  const [threshold, setThreshold] = useState(50);  // Default threshold
   const [selectedGame, setSelectedGame] = useState('game1');  // Default to game 1
   const [gameId, setGameId] = useState('66e51cad02e3b2ff683a209e');  // Default to game 1 ID
   const [motorSpeed, setMotorSpeed] = useState(0);
@@ -45,16 +44,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
     }
   };
 
-  const fetchHighScoreAndThreshold = async () => {
+  const fetchHighScore = async () => {
     try {
-      // Fetch threshold
-      const thresholdResponse = await fetch('https://pulsegrip.design/data/threshold', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      const thresholdData = await thresholdResponse.json();
-      setThreshold(thresholdData || 50);
       // Fetch high score
       const scoreResponse = await fetch(`https://pulsegrip.design/data/topScores/${gameId}`, {
         headers: {
@@ -73,7 +64,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   }, [gameId]);
 
   useEffect(() => {
-    fetchHighScoreAndThreshold();
+    fetchHighScore();
   }, [gameId]);
 
   useEffect(() => {
@@ -83,31 +74,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, [updateTime, token]);
-
-  const handleSliderChange = async (value: number) => {
-    setThreshold(value);
-
-    // Call API to update the threshold value
-    try {
-      const response = await fetch('https://pulsegrip.design/data/threshold', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          threshold: value
-        })
-      });
-      if (response.ok) {
-        console.log('Threshold updated successfully');
-      } else {
-        console.error('Failed to update threshold');
-      }
-    } catch (error) {
-      console.error('Error updating threshold:', error);
-    }
-  };
 
   const handleGameChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedGame = event.target.value;
@@ -171,7 +137,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
           </div>
         </div>
       </div>
-      <Slider value={threshold} onChange={handleSliderChange} />
     </div>
   );
 };
