@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
       console.log('Machine data:', data);
       setMotorSpeed(data[0].motorSpeed || 0);
       setMotorAngle(data[0].motorAngle || 0);
-      setIsClosed(data[0].isClosed || 0);
+      setIsClosed(data[0].isClosed || false);
     } catch (error) {
       console.error('Error fetching machine data:', error);
     }
