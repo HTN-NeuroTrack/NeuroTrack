@@ -6,7 +6,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch(`http://<YOUR_BACKEND_URL>/auth/login`, {
+      const response = await fetch(`https://pulsegrip.design/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

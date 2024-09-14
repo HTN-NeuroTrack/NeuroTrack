@@ -5,6 +5,7 @@ import { faTachometerAlt, faDumbbell, faRuler, faMedal } from '@fortawesome/free
 
 const Dashboard: React.FC = () => {
   const [threshold, setThreshold] = useState(50);  // Default threshold
+  const [gameId, setGameId] = useState('game1');  // Default to game 1
   const [motorSpeed, setMotorSpeed] = useState(0);
   const [motorAngle, setMotorAngle] = useState(0);
   const [maxStrength, setMaxStrength] = useState(0);
@@ -14,51 +15,58 @@ const Dashboard: React.FC = () => {
   // Get the token from local storage
   const token = localStorage.getItem('token');
 
+  const fetchMachineData = async () => {
+    if (!token) return;
+
+    try {
+      // Fetch game session data
+      const response = await fetch(`https://pulsegrip.design/data/EMGdetails`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await response.json();
+      console.log('Machine data:', data);
+      setMotorSpeed(data[0].motorSpeed || 0);
+      setMotorAngle(data[0].motorAngle || 0);
+      setMaxStrength(data[0].EMGoutput || 0);
+      // Fetch threshold
+      const thresholdResponse = await fetch('https://pulsegrip.design/data/threshold', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const thresholdData = await thresholdResponse.json();
+      setThreshold(thresholdData || 50);
+      // Fetch high score
+      const scoreResponse = await fetch(`https://pulsegrip.design/data/topScores/${gameId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const scores = await scoreResponse.json();
+      setHighScore(scores[0]?.score || 0);  // Assuming the highest score is the first element
+    } catch (error) {
+      console.error('Error fetching machine data:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchMachineData = async () => {
-      if (!gameSessionId || !token) return;
-
-      try {
-        // Fetch game session data
-        const response = await fetch(`http://3.80.75.14:8080/data/getGameSessionResult/${gameSessionId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const data = await response.json();
-        setMotorSpeed(data.motorSpeeds || 0);
-        setMotorAngle(data.motorAngles || 0);
-        setMaxStrength(data.EMGoutputs || 0);
-
-        // Fetch high score
-        const scoreResponse = await fetch(`http://3.80.75.14:8080/data/topScores/some-game-id`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        const scores = await scoreResponse.json();
-        setHighScore(scores[0]?.score || 0);  // Assuming the highest score is the first element
-      } catch (error) {
-        console.error('Error fetching machine data:', error);
-      }
-    };
-
     fetchMachineData();
-  }, [gameSessionId, token]);
+  }, [gameSessionId, token, gameId]);
 
   const handleSliderChange = async (value: number) => {
     setThreshold(value);
 
     // Call API to update the threshold value
     try {
-      const response = await fetch('http://3.80.75.14:8080/data/threshold', {
+      const response = await fetch('https://pulsegrip.design/data/threshold', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({
-          gameId: 'some-game-id',  // Replace with actual game ID if needed
           threshold: value
         })
       });
@@ -72,9 +80,12 @@ const Dashboard: React.FC = () => {
     }
   };
 
-  // Example function to set a game session ID (You will need to provide the logic to set this)
-  const handleSetGameSessionId = (id: string) => {
-    setGameSessionId(id);
+  const handleGameChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.value === 'game1') {
+      setGameId('66e51cad02e3b2ff683a209e');
+    } else if (event.target.value === 'game2') {
+      setGameId('66e51cd702e3b2ff683a209f');
+    }
   };
 
   return (
@@ -87,6 +98,10 @@ const Dashboard: React.FC = () => {
             <p className="text-lg text-gray-700">High Score</p>
             <p className="text-xl font-semibold text-gray-900">{highScore}</p>
           </div>
+          <select value={gameId} onChange={handleGameChange} className="ml-4 p-2 border rounded">
+            <option value="game1">Game 1</option>
+            <option value="game2">Game 2</option>
+          </select>
         </div>
         <div className="flex items-center space-x-4">
           <FontAwesomeIcon icon={faRuler} className="text-blue-500 text-4xl" />
