@@ -28,7 +28,6 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
   };
 
   const handleInputBlur = () => {
-   
     const roundedValue = parseFloat(manualInput).toFixed(1);
     setManualInput(roundedValue);
     onChange(parseFloat(roundedValue));
@@ -41,7 +40,7 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
           type="range"
           min="0"
           max="100"
-          step="1" 
+          step="1"
           value={value}
           onChange={handleSliderChange}
           className="absolute inset-0 w-full h-full appearance-none cursor-pointer"
@@ -52,7 +51,7 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
       </div>
 
       <div
-        className="absolute flex items-center justify-center text-white font-bold bg-blue-600 rounded-full"
+        className="absolute flex items-center justify-center text-white font-bold bg-blue-600 rounded-full pointer-events-none" // Disable pointer events
         style={{ 
           left: `calc(${value}% - 1.5rem)`, 
           width: '3rem', 
@@ -63,7 +62,7 @@ const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
         {value}
       </div>
 
-      <div className="mt-2 flex justify-center">
+      <div className="mt-10 flex justify-center">
         <input
           type="text"
           value={manualInput}
