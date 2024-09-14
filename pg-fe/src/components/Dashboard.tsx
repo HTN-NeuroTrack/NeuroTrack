@@ -53,7 +53,15 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchMachineData();
-  }, [token, gameId]);
+  }, [gameId]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchMachineData();
+    }, 5000); // Call fetchMachineData every 5 seconds
+
+    return () => clearInterval(intervalId); // Clear interval on component unmount
+  }, [token]);
 
   const handleSliderChange = async (value: number) => {
     setThreshold(value);
