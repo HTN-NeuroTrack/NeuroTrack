@@ -3,6 +3,7 @@ import Dashboard from '../components/Dashboard';
 import GameButtons from '../components/GameButtons';
 import TeamMembers from '../components/TeamMembers';
 import Keybinds from '../components/Keybind';
+import KeybindTest from '../components/Keybindtest';
 import logo from '../assets/logo.png';
 
 const HomePage: React.FC = () => {
@@ -32,7 +33,8 @@ const HomePage: React.FC = () => {
       <main className="mt-8">
         <Dashboard />
         <GameButtons />
-        <Keybinds onChange={handleKeybindChange} /> {/* Pass the onChange handler */}
+        <Keybinds onChange={handleKeybindChange} />
+        <KeybindTest />
         <TeamMembers />
       </main>
     </div>
