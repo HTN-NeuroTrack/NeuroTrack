@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Slider from './Slider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faDumbbell, faRuler, faMedal } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faDumbbell, faRuler, faMedal, faHandFist, faHand } from '@fortawesome/free-solid-svg-icons';
 
-const Dashboard: React.FC = () => {
+interface DashboardProps {
+  onIsClosedChange: (newIsClosed: boolean) => void;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   const [threshold, setThreshold] = useState(50);  // Default threshold
   const [selectedGame, setSelectedGame] = useState('game1');  // Default to game 1
   const [gameId, setGameId] = useState('66e51cad02e3b2ff683a209e');  // Default to game 1 ID
   const [motorSpeed, setMotorSpeed] = useState(0);
   const [motorAngle, setMotorAngle] = useState(0);
-  const [isClosed, setIsClosed] = useState(false);
+  const [closed, isClosed] = useState(false);
   const [highScore, setHighScore] = useState(0);  // For high score
 
   // Get the token from local storage
   const token = localStorage.getItem('token');
 
   const fetchMachineData = async () => {
-    if (!token) return;
-
     try {
       // Fetch game session data
       const response = await fetch(`https://pulsegrip.design/data/EMGdetails`, {
@@ -29,15 +31,12 @@ const Dashboard: React.FC = () => {
       console.log('Machine data:', data);
       setMotorSpeed(data[0].motorSpeed || 0);
       setMotorAngle(data[0].motorAngle || 0);
-      setIsClosed(data[0].isClosed || false);
+      isClosed(data[0].isClosed || false);
     } catch (error) {
       console.error('Error fetching machine data:', error);
     }
   };
-
   const fetchMachineData2 = async () => {
-    if (!token) return;
-
     try {
       // Fetch threshold
       const thresholdResponse = await fetch('https://pulsegrip.design/data/threshold', {
@@ -108,6 +107,11 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  // Example function to change isClosed state in HomePage
+  const closeDashboard = () => {
+    onIsClosedChange(true);
+  };
+
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h2>
@@ -131,19 +135,21 @@ const Dashboard: React.FC = () => {
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <FontAwesomeIcon icon={faTachometerAlt} className="text-red-500 text-4xl" />
+          <FontAwesomeIcon icon={faTachometerAlt} className="text-purple-500 text-4xl" />
           <div>
             <p className="text-lg text-gray-700">Motor Speed</p>
             <p className="text-xl font-semibold text-gray-900">{motorSpeed} RPM</p>
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <FontAwesomeIcon icon={faDumbbell} className="text-green-500 text-4xl" />
+          {
+            closed ? <FontAwesomeIcon icon={faHandFist} className="text-red-500 text-4xl" /> : <FontAwesomeIcon icon={faHand} className="text-green-500 text-4xl" />
+          }
           <div>
-            <p className="text-lg text-gray-700">Is Closed?</p>
+            <p className="text-lg text-gray-700">Hand</p>
             <p className="text-xl font-semibold text-gray-900">{
-                isClosed ? 'Yes' : 'No'
-              }</p>
+              closed ? 'Closed' : 'Open'
+            }</p>
           </div>
         </div>
       </div>

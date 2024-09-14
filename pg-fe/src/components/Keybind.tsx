@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 interface KeybindsProps {
   onChange: (key: string) => void; // Handler to receive the selected keybind
+  isClosed: boolean;
 }
 
-const Keybinds: React.FC<KeybindsProps> = ({ onChange }) => {
+const Keybinds: React.FC<KeybindsProps> = ({ onChange, isClosed }) => {
   const [isKeybindActive, setIsKeybindActive] = useState<boolean>(false);
   const [keybind, setKeybind] = useState<string>('');
 
@@ -45,6 +46,9 @@ const Keybinds: React.FC<KeybindsProps> = ({ onChange }) => {
     <div className="mt-8 p-4 border rounded-md bg-gray-100">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Keybinds</h2>
+        <p>{
+          isClosed ? 'Hand is closed' : 'Hand is open'  
+        }</p>
         <label className="flex items-center space-x-3">
           <span className="text-gray-700">Enable Keybind:</span>
           <input

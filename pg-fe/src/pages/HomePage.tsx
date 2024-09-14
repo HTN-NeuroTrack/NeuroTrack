@@ -8,11 +8,17 @@ import logo from '../assets/logo.png';
 const HomePage: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [keybind, setKeybind] = useState<string>('');
+  const [isClosed, setIsClosed] = useState<boolean>(false);
 
   const handleKeybindChange = (newKeybind: string) => {
     setKeybind(newKeybind);
     console.log('New Keybind:', newKeybind);
 
+  };
+
+  const handleIsClosedChange = (newIsClosed: boolean) => {
+    setIsClosed(newIsClosed);
+    console.log('Is Closed:', newIsClosed);
   };
 
   return (
@@ -30,9 +36,9 @@ const HomePage: React.FC = () => {
       </header>
 
       <main className="mt-8">
-        <Dashboard />
+        <Dashboard onIsClosedChange={handleIsClosedChange} />
         <GameButtons />
-        <Keybinds onChange={handleKeybindChange} /> {/* Pass the onChange handler */}
+        <Keybinds onChange={handleKeybindChange} isClosed={isClosed} /> {/* Pass the onChange handler */}
         <TeamMembers />
       </main>
     </div>
