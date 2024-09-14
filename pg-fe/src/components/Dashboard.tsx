@@ -130,7 +130,7 @@ const Dashboard: React.FC = () => {
         <div className="flex items-center space-x-4">
           <FontAwesomeIcon icon={faDumbbell} className="text-green-500 text-4xl" />
           <div>
-            <p className="text-lg text-gray-700">Max Strength</p>
+            <p className="text-lg text-gray-700">Is Closed?</p>
             <p className="text-xl font-semibold text-gray-900">{maxStrength} kg</p>
           </div>
         </div>
