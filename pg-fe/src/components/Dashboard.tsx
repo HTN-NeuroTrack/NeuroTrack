@@ -15,9 +15,16 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   const [motorAngle, setMotorAngle] = useState(0);
   const [closed, setClosed] = useState(false);
   const [highScore, setHighScore] = useState(0);
+  const [updateTime, setUpdateTime] = useState(5000);
+  const [playingNow, setPlayingNow] = useState(false);
 
   // Get the token from local storage
   const token = localStorage.getItem('token');
+
+  const handlePlayingNowCheckbox = () => {
+    setPlayingNow(!playingNow);
+    setUpdateTime(!playingNow ? 500 : 5000);
+  };
 
   const fetchMachineData = async () => {
     try {
@@ -69,10 +76,10 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchMachineData();
-    }, 5000); // Call fetchMachineData every 5 seconds
+    }, updateTime);
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, [token]);
+  }, [updateTime, token]);
 
   const handleSliderChange = async (value: number) => {
     setThreshold(value);
@@ -111,7 +118,18 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h2>
+      <div className='flex flex-row justify-between'>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h2>
+        <label className="flex items-center space-x-3">
+          <span className="text-gray-700">Playing Now:</span>
+          <input
+            type="checkbox"
+            className="w-6 h-6 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            checked={playingNow}
+            onChange={handlePlayingNowCheckbox}
+          />
+        </label>
+      </div>
       <div className="grid grid-cols-2 gap-6 mb-6">
         <div className="flex items-center space-x-4">
           <FontAwesomeIcon icon={faMedal} className="text-yellow-500 text-4xl" />
