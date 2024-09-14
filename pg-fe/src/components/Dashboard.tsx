@@ -15,7 +15,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   const [motorAngle, setMotorAngle] = useState(0);
   const [closed, setClosed] = useState(false);
   const [highScore, setHighScore] = useState(0);
-  const [updateTime, setUpdateTime] = useState(5000);
+  const [updateTime, setUpdateTime] = useState(6500);
   const [playingNow, setPlayingNow] = useState(false);
 
   // Get the token from local storage
@@ -23,7 +23,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
 
   const handlePlayingNowCheckbox = () => {
     setPlayingNow(!playingNow);
-    setUpdateTime(!playingNow ? 500 : 5000);
+    setUpdateTime(!playingNow ? 100 : 6500);
   };
 
   const fetchMachineData = async () => {
@@ -45,7 +45,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
     }
   };
 
-  const fetchMachineData2 = async () => {
+  const fetchHighScoreAndThreshold = async () => {
     try {
       // Fetch threshold
       const thresholdResponse = await fetch('https://pulsegrip.design/data/threshold', {
@@ -64,13 +64,16 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
       const scores = await scoreResponse.json();
       setHighScore(scores[0]?.score || 0);  // Assuming the highest score is the first element
     } catch (error) {
-      console.error('Error fetching machine data:', error);
+      console.error('Error fetching high score and threshold:', error);
     }
   };
 
   useEffect(() => {
     fetchMachineData();
-    fetchMachineData2();
+  }, [gameId]);
+
+  useEffect(() => {
+    fetchHighScoreAndThreshold();
   }, [gameId]);
 
   useEffect(() => {
