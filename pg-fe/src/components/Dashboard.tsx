@@ -30,6 +30,15 @@ const Dashboard: React.FC = () => {
       setMotorSpeed(data[0].motorSpeed || 0);
       setMotorAngle(data[0].motorAngle || 0);
       setMaxStrength(data[0].EMGoutput || 0);
+    } catch (error) {
+      console.error('Error fetching machine data:', error);
+    }
+  };
+
+  const fetchMachineData2 = async () => {
+    if (!token) return;
+
+    try {
       // Fetch threshold
       const thresholdResponse = await fetch('https://pulsegrip.design/data/threshold', {
         headers: {
@@ -53,6 +62,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchMachineData();
+    fetchMachineData2();
   }, [gameId]);
 
   useEffect(() => {
