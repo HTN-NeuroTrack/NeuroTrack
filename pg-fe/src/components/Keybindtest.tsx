@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const KeybindTest: React.FC = () => {
+interface KeybindTestProps {
+  keybind: string;
+  isClosed: boolean;
+}
+
+const KeybindTest: React.FC<KeybindTestProps> = ({ keybind, isClosed }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [isTypingAreaActive, setIsTypingAreaActive] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -19,6 +24,12 @@ const KeybindTest: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isClosed && keybind.length === 1 && keybind.match(/[a-z]/i)) {
+      setInputValue((prevValue) => prevValue + keybind);
+    }
+  }, [isClosed, keybind]);
+
   const handleTypingAreaClick = () => {
     setIsTypingAreaActive(true);
   };
@@ -29,7 +40,6 @@ const KeybindTest: React.FC = () => {
 
   return (
     <div className="mt-8 flex justify-between space-x-4 p-4 border rounded-md bg-gray-100">
-      {/* Small input area */}
       <div className="flex-grow">
         <input
           type="text"
@@ -41,7 +51,6 @@ const KeybindTest: React.FC = () => {
         />
       </div>
 
-      {/* Tiny typing area */}
       <div
         ref={typingAreaRef}
         tabIndex={0}

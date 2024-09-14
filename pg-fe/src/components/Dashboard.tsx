@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Slider from './Slider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faDumbbell, faRuler, faMedal, faHandFist, faHand } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faRuler, faMedal, faHandFist, faHand } from '@fortawesome/free-solid-svg-icons';
 
 interface DashboardProps {
   onIsClosedChange: (newIsClosed: boolean) => void;
@@ -34,7 +34,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
         }
       });
       const data = await response.json();
-      console.log('Machine data:', data);
       setMotorSpeed(data[0].motorSpeed || 0);
       setMotorAngle(data[0].motorAngle || 0);
       setClosed(data[0].isClosed || false);

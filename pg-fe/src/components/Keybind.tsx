@@ -12,8 +12,14 @@ const Keybinds: React.FC<KeybindsProps> = ({ onChange, isClosed }) => {
   const handleKeyDown = (event: KeyboardEvent) => {
     if (isKeybindActive) {
       event.preventDefault(); // Prevent default action of the key
-      setKeybind(event.key);
-      onChange(event.key); // Notify parent component about the change
+      const key = event.key;
+      if (key.length === 1 && key.match(/[a-z]/i)) {
+        setKeybind(key.toLowerCase());
+        onChange(key.toLowerCase()); // Notify parent component about the change
+      } else {
+        setKeybind(key);
+        onChange(key); // Notify parent component about the change
+      }
     }
   };
 
@@ -46,9 +52,7 @@ const Keybinds: React.FC<KeybindsProps> = ({ onChange, isClosed }) => {
     <div className="mt-8 p-4 border rounded-md bg-gray-100">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">Keybinds</h2>
-        <p>{
-          isClosed ? 'Hand is closed' : 'Hand is open'  
-        }</p>
+        <p>{isClosed ? 'Hand is closed' : 'Hand is open'}</p>
         <label className="flex items-center space-x-3">
           <span className="text-gray-700">Enable Keybind:</span>
           <input
@@ -62,9 +66,7 @@ const Keybinds: React.FC<KeybindsProps> = ({ onChange, isClosed }) => {
 
       <div className={`p-4 border rounded ${isKeybindActive ? 'bg-white cursor-pointer' : 'bg-gray-300'}`}>
         <p className="text-gray-800 text-lg mb-2">Click to select a keybind:</p>
-        <div
-          className={`p-3 text-center border rounded-md ${isKeybindActive ? 'bg-gray-50' : ''}`}
-        >
+        <div className={`p-3 text-center border rounded-md ${isKeybindActive ? 'bg-gray-50' : ''}`}>
           {isKeybindActive ? (keybind || 'Press any key or click a mouse button...') : keybind || 'No keybind set'}
         </div>
       </div>

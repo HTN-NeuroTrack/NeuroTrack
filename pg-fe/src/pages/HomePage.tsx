@@ -40,7 +40,7 @@ const HomePage: React.FC = () => {
         <Dashboard onIsClosedChange={handleIsClosedChange} />
         <GameButtons />
         <Keybinds onChange={handleKeybindChange} isClosed={isClosed} />
-        <KeybindTest />
+        <KeybindTest keybind={keybind} isClosed={isClosed} />
         <TeamMembers />
       </main>
     </div>
