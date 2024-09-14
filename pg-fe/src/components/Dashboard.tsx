@@ -5,7 +5,8 @@ import { faTachometerAlt, faDumbbell, faRuler, faMedal } from '@fortawesome/free
 
 const Dashboard: React.FC = () => {
   const [threshold, setThreshold] = useState(50);  // Default threshold
-  const [gameId, setGameId] = useState('game1');  // Default to game 1
+  const [selectedGame, setSelectedGame] = useState('game1');  // Default to game 1
+  const [gameId, setGameId] = useState('66e51cad02e3b2ff683a209e');  // Default to game 1 ID
   const [motorSpeed, setMotorSpeed] = useState(0);
   const [motorAngle, setMotorAngle] = useState(0);
   const [maxStrength, setMaxStrength] = useState(0);
@@ -81,9 +82,11 @@ const Dashboard: React.FC = () => {
   };
 
   const handleGameChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    if (event.target.value === 'game1') {
+    const selectedGame = event.target.value;
+    setSelectedGame(selectedGame);
+    if (selectedGame === 'game1') {
       setGameId('66e51cad02e3b2ff683a209e');
-    } else if (event.target.value === 'game2') {
+    } else if (selectedGame === 'game2') {
       setGameId('66e51cd702e3b2ff683a209f');
     }
   };
@@ -98,7 +101,7 @@ const Dashboard: React.FC = () => {
             <p className="text-lg text-gray-700">High Score</p>
             <p className="text-xl font-semibold text-gray-900">{highScore}</p>
           </div>
-          <select value={gameId} onChange={handleGameChange} className="ml-4 p-2 border rounded">
+          <select value={selectedGame} onChange={handleGameChange} className="ml-4 p-2 border rounded">
             <option value="game1">Game 1</option>
             <option value="game2">Game 2</option>
           </select>
