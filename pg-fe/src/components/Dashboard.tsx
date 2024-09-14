@@ -13,8 +13,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   const [gameId, setGameId] = useState('66e51cad02e3b2ff683a209e');  // Default to game 1 ID
   const [motorSpeed, setMotorSpeed] = useState(0);
   const [motorAngle, setMotorAngle] = useState(0);
-  const [closed, isClosed] = useState(false);
-  const [highScore, setHighScore] = useState(0);  // For high score
+  const [closed, setClosed] = useState(false);
+  const [highScore, setHighScore] = useState(0);
 
   // Get the token from local storage
   const token = localStorage.getItem('token');
@@ -31,11 +31,13 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
       console.log('Machine data:', data);
       setMotorSpeed(data[0].motorSpeed || 0);
       setMotorAngle(data[0].motorAngle || 0);
-      isClosed(data[0].isClosed || false);
+      setClosed(data[0].isClosed || false);
+      onIsClosedChange(data[0].isClosed || false);
     } catch (error) {
       console.error('Error fetching machine data:', error);
     }
   };
+
   const fetchMachineData2 = async () => {
     try {
       // Fetch threshold
@@ -105,11 +107,6 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
     } else if (selectedGame === 'game2') {
       setGameId('66e51cd702e3b2ff683a209f');
     }
-  };
-
-  // Example function to change isClosed state in HomePage
-  const closeDashboard = () => {
-    onIsClosedChange(true);
   };
 
   return (
