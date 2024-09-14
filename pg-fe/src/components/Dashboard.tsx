@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
   const [gameId, setGameId] = useState('66e51cad02e3b2ff683a209e');  // Default to game 1 ID
   const [motorSpeed, setMotorSpeed] = useState(0);
   const [motorAngle, setMotorAngle] = useState(0);
-  const [maxStrength, setMaxStrength] = useState(0);
+  const [isClosed, setIsClosed] = useState(false);
   const [highScore, setHighScore] = useState(0);  // For high score
 
   // Get the token from local storage
@@ -29,7 +29,16 @@ const Dashboard: React.FC = () => {
       console.log('Machine data:', data);
       setMotorSpeed(data[0].motorSpeed || 0);
       setMotorAngle(data[0].motorAngle || 0);
-      setMaxStrength(data[0].EMGoutput || 0);
+      setIsClosed(data[0].isClosed || false);
+    } catch (error) {
+      console.error('Error fetching machine data:', error);
+    }
+  };
+
+  const fetchMachineData2 = async () => {
+    if (!token) return;
+
+    try {
       // Fetch threshold
       const thresholdResponse = await fetch('https://pulsegrip.design/data/threshold', {
         headers: {
@@ -53,6 +62,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchMachineData();
+    fetchMachineData2();
   }, [gameId]);
 
   useEffect(() => {
@@ -131,7 +141,9 @@ const Dashboard: React.FC = () => {
           <FontAwesomeIcon icon={faDumbbell} className="text-green-500 text-4xl" />
           <div>
             <p className="text-lg text-gray-700">Is Closed?</p>
-            <p className="text-xl font-semibold text-gray-900">{maxStrength} kg</p>
+            <p className="text-xl font-semibold text-gray-900">{
+                isClosed ? 'Yes' : 'No'
+              }</p>
           </div>
         </div>
       </div>
