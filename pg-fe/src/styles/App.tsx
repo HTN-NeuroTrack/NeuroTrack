@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
-import UnityPage from '../pages/UnityPage';
+import UnityPage1 from '../pages/Game 1';
 import Login from '../components/Login';
 
 const App: React.FC = () => {
@@ -10,7 +10,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path='/login' element={<Login />} />
-        <Route path="/game1" element={<UnityPage />} ></Route>
+        <Route path="/game1" element={<UnityPage1 />} ></Route>
       </Routes>
     </Router>
   );
