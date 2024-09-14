@@ -10,15 +10,49 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">Dashboard</h2>
-      <div className="grid grid-cols-2 gap-6 mb-6">
-        <p className="text-lg text-gray-700">High Score: <span className="font-semibold">1200</span></p>
-        <p className="text-lg text-gray-700">Motor Angle: <span className="font-semibold">45°</span></p>
-        <p className="text-lg text-gray-700">Motor Speed: <span className="font-semibold">3000 RPM</span></p>
-        <p className="text-lg text-gray-700">Max Strength: <span className="font-semibold">80 kg</span></p>
+    <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-8 rounded-2xl shadow-xl transform transition-transform hover:scale-105 duration-300 ease-in-out">
+      <h2 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">Dashboard</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <div className="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600">High Score</p>
+            <h3 className="text-2xl font-bold text-gray-900">1200</h3>
+          </div>
+          <div className="bg-blue-500 text-white rounded-full p-4">
+            <i className="fas fa-trophy fa-2x"></i>
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600">Motor Angle</p>
+            <h3 className="text-2xl font-bold text-gray-900">45°</h3>
+          </div>
+          <div className="bg-green-500 text-white rounded-full p-4">
+            <i className="fas fa-compass fa-2x"></i>
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600">Motor Speed</p>
+            <h3 className="text-2xl font-bold text-gray-900">3000 RPM</h3>
+          </div>
+          <div className="bg-red-500 text-white rounded-full p-4">
+            <i className="fas fa-tachometer-alt fa-2x"></i>
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-lg shadow-md flex items-center justify-between">
+          <div>
+            <p className="text-sm text-gray-600">Max Strength</p>
+            <h3 className="text-2xl font-bold text-gray-900">80 kg</h3>
+          </div>
+          <div className="bg-yellow-500 text-white rounded-full p-4">
+            <i className="fas fa-dumbbell fa-2x"></i>
+          </div>
+        </div>
       </div>
-      <Slider value={threshold} onChange={handleSliderChange} />
+      <div className="mt-6">
+        <Slider value={threshold} onChange={handleSliderChange} />
+      </div>
     </div>
   );
 };

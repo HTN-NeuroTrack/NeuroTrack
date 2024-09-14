@@ -7,14 +7,16 @@ import logo from '../assets/logo.png';
 const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <header className="flex justify-between items-center bg-gray-800 text-white p-6 rounded-lg shadow-md">
-        <div className="flex items-center">
-          <img src={logo} alt="Company Logo" className="w-24 h-24 mr-" />  
-          <h1 className="text-3xl font-bold">Pulsegrip</h1> 
+      <header className="flex justify-between items-center bg-gray-800 text-white p-4 rounded-lg shadow-md">
+        <div className="flex items-center space-x-4">
+          <img src={logo} alt="Company Logo" className="w-20 h-20" />  
+          <h1 className="text-2xl font-bold">Pulsegrip</h1> 
         </div>
-        <button className="bg-blue-500 px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-all">
-          Learn More
-        </button>
+        <div className="flex space-x-2">
+          <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">GitHub</a>
+          <a href="https://www.youtube.com/your-tutorial" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">YouTube</a>
+          <a href="https://devpost.com/your-project" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">Devpost</a>
+        </div>
       </header>
 
       <main className="mt-8">
