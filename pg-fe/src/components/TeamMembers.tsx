@@ -9,17 +9,19 @@ const teamMembers = [
 
 const TeamMembers: React.FC = () => {
   return (
-    <div className="mt-8">
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">Team Members</h3>
-      <ul className="space-y-2">
+    <div className="mt-6">
+      <div className="flex flex-wrap justify-center gap-4">
         {teamMembers.map((member) => (
-          <li key={member.name}>
-            <a href={member.linkedin} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
-              {member.name}
-            </a>
-          </li>
+          <a 
+            key={member.name} 
+            href={member.linkedin} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-sm text-gray-500 hover:text-blue-400 transition-colors font-light">
+            {member.name}
+          </a>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
