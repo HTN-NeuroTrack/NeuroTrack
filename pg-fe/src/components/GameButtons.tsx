@@ -1,15 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
-const GamesButtons: React.FC = () => {
-  const navigate = useNavigate();
-
+const GameButtons: React.FC = () => {
   return (
-    <div className="games-buttons">
-      <button onClick={() => navigate('/game1')}>Game 1</button>
-      <button onClick={() => navigate('/game2')}>Game 2</button>
+    <div className="flex justify-center gap-4 mt-8">
+      <button className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-all">
+        Game 1
+      </button>
+      <button className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition-all">
+        Game 2
+      </button>
     </div>
   );
 };
 
-export default GamesButtons;
+export default GameButtons;

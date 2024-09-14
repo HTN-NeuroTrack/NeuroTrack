@@ -7,14 +7,17 @@ interface SliderProps {
 
 const Slider: React.FC<SliderProps> = ({ value, onChange }) => {
   return (
-    <div className="slider-container">
-      <label>Threshold: {value}</label>
+    <div className="mt-6">
+      <label className="block text-lg text-gray-700 font-medium mb-2">
+        Threshold: {value}
+      </label>
       <input
         type="range"
-        min="0"
-        max="100"
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
+        className="w-full"
+        min="0"
+        max="100"
       />
     </div>
   );

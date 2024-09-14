@@ -1,30 +1,24 @@
 import React from 'react';
 
+const teamMembers = [
+  { name: 'Samir Sharma', linkedin: 'https://www.linkedin.com/in/samir-sharma' },
+  { name: 'Kevin Dang', linkedin: 'https://www.linkedin.com/in/kevin-dang' },
+  { name: 'Noah Levy', linkedin: 'https://www.linkedin.com/in/noah-levy' },
+  { name: 'Aadi Umrani', linkedin: 'https://www.linkedin.com/in/aadi-umrani' }
+];
+
 const TeamMembers: React.FC = () => {
   return (
-    <div className="team-members">
-      <h3>Team Members:</h3>
-      <ul>
-      <li>
-            <a href="https://www.linkedin.com/in/samir-rsharma" target="_blank" rel="noopener noreferrer">
-              Samir Sharma
+    <div className="mt-8">
+      <h3 className="text-2xl font-bold text-gray-800 mb-4">Team Members</h3>
+      <ul className="space-y-2">
+        {teamMembers.map((member) => (
+          <li key={member.name}>
+            <a href={member.linkedin} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">
+              {member.name}
             </a>
           </li>
-          <li>
-            <a href="https://www.linkedin.com/in/kevin-dang" target="_blank" rel="noopener noreferrer">
-              Kevin Dang
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/noah-levy" target="_blank" rel="noopener noreferrer">
-              Noah Levy
-            </a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/aadi-umrani" target="_blank" rel="noopener noreferrer">
-              Aadi Umrani
-            </a>
-          </li>
+        ))}
       </ul>
     </div>
   );

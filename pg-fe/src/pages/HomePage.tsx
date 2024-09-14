@@ -1,25 +1,23 @@
 import React from 'react';
 import Dashboard from '../components/Dashboard';
-import GamesButtons from '../components/GameButtons';
+import GameButtons from '../components/GameButtons';
 import TeamMembers from '../components/TeamMembers';
-import '../styles/App.css';
-import { useNavigate } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
-    <div className="home-container">
-      <header className="header">
-        <h1 className="project-name">Pulsegrip</h1>
-        <button className="learn-more-button" onClick={() => navigate('/learn-more')}>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <header className="flex justify-between items-center bg-gray-800 text-white p-6 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold">Pulsegrip</h1>
+        <button className="bg-blue-500 px-4 py-2 rounded-md shadow-md hover:bg-blue-600 transition-all">
           Learn More
         </button>
       </header>
 
-      <Dashboard />
-      <GamesButtons />
-      <TeamMembers />
+      <main className="mt-8">
+        <Dashboard />
+        <GameButtons />
+        <TeamMembers />
+      </main>
     </div>
   );
 };
