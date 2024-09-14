@@ -11,7 +11,6 @@ const Dashboard: React.FC = () => {
   const [motorAngle, setMotorAngle] = useState(0);
   const [maxStrength, setMaxStrength] = useState(0);
   const [highScore, setHighScore] = useState(0);  // For high score
-  const [gameSessionId, setGameSessionId] = useState('');  // Manage game session ID
 
   // Get the token from local storage
   const token = localStorage.getItem('token');
@@ -54,7 +53,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     fetchMachineData();
-  }, [gameSessionId, token, gameId]);
+  }, [token, gameId]);
 
   const handleSliderChange = async (value: number) => {
     setThreshold(value);
