@@ -31,7 +31,7 @@ const HomePage: React.FC = () => {
         </div>
         <div className="flex space-x-2">
           <a href="https://github.com/PulseGrip" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">GitHub</a>
-          <a href="https://www.youtube.com/BLANK" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">YouTube</a>
+          <a href="https://youtu.be/3KXbC_E0zrA" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">YouTube</a>
           <a href="https://devpost.com/software/pulsegrip" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">Devpost</a>
         </div>
       </header>
