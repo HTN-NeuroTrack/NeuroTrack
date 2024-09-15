@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faRuler, faMedal, faHandFist, faHand } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faDraftingCompass, faMedal, faHandFist, faHand } from '@fortawesome/free-solid-svg-icons';
 
 interface DashboardProps {
   onIsClosedChange: (newIsClosed: boolean) => void;
@@ -110,14 +110,14 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
           </select>
         </div>
         <div className="flex items-center space-x-4">
-          <FontAwesomeIcon icon={faRuler} className="text-blue-500 text-4xl" />
+          <FontAwesomeIcon icon={faDraftingCompass} className="text-blue-500 text-4xl transform rotate-180" />
           <div>
             <p className="text-lg text-gray-700">Motor Angle</p>
             <p className="text-xl font-semibold text-gray-900">{motorAngle}°</p>
           </div>
         </div>
         <div className="flex items-center space-x-4">
-          <FontAwesomeIcon icon={faTachometerAlt} className="text-purple-500 text-4xl" />
+          <FontAwesomeIcon icon={faTachometerAlt} className="text-orange-500 text-4xl" />
           <div>
             <p className="text-lg text-gray-700">Motor Speed</p>
             <p className="text-xl font-semibold text-gray-900">{motorSpeed} RPM</p>
