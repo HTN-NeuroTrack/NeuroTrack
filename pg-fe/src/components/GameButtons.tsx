@@ -13,26 +13,28 @@ const GameButtons: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center gap-8 mt-8">
-      <div className="relative w-64 h-40">
-        <button
-          onClick={handleGame1Click}
-          className="absolute inset-0 w-full h-full bg-blue-500 bg-opacity-60 text-white text-3xl font-bold rounded-lg shadow-md hover:bg-opacity-70 transition-all"
-          style={{ backgroundImage: `url('https://www.flutterclutter.dev/images/posts/2020-07-24-flutter-game-tutorial-fruit-ninja-clone/flutter-fruit-ninja-clone.svg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-        >
-          Game 1
-        </button>
-      </div>
-      <div className="relative w-64 h-40">
-        <button
-          onClick={handleGame2Click}
-          className="absolute inset-0 w-full h-full bg-blue-500 bg-opacity-60 text-white text-3xl font-bold rounded-lg shadow-md hover:bg-opacity-70 transition-all"
-          style={{ backgroundImage: `url('https://img.itch.zone/aW1nLzY0MDk3NTQucG5n/original/ldBlwA.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-        >
-          Game 2
-        </button>
-      </div>
-    </div>
+<div className="flex justify-center gap-8 mt-8">
+  <div className="relative w-64 h-40">
+    <button
+      onClick={handleGame1Click}
+      className="absolute inset-0 w-full h-full bg-orange-500 bg-opacity-60 text-white text-3xl font-bold rounded-lg shadow-md hover:bg-opacity-70 transition-all"
+      style={{ backgroundImage: `url('https://png.pngtree.com/png-clipart/20220730/ourmid/pngtree-cartoon-knife-png-image_6093279.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg"></div> {/* Overlay */}
+      <span className="relative z-10 text-shadow-lg">Hand Ninja</span> {/* Text */}
+    </button>
+  </div>
+  <div className="relative w-64 h-40">
+    <button
+      onClick={handleGame2Click}
+      className="absolute inset-0 w-full h-full bg-blue-500 bg-opacity-60 text-white text-3xl font-bold rounded-lg shadow-md hover:bg-opacity-70 transition-all"
+      style={{ backgroundImage: `url('https://static.vecteezy.com/system/resources/previews/021/629/732/original/3d-illustration-of-dart-bullseye-target-png.png')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-40 rounded-lg"></div> {/* Overlay */}
+      <span className="relative z-10 text-shadow-lg">Target Tracker</span> {/* Text */}
+    </button>
+  </div>
+</div>
   );
 };
 

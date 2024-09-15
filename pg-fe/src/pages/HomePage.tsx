@@ -7,14 +7,12 @@ import KeybindTest from '../components/Keybindtest';
 import logo from '../assets/logo.png';
 
 const HomePage: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [keybind, setKeybind] = useState<string>('');
   const [isClosed, setIsClosed] = useState<boolean>(false);
 
   const handleKeybindChange = (newKeybind: string) => {
     setKeybind(newKeybind);
     console.log('New Keybind:', newKeybind);
-
   };
 
   const handleIsClosedChange = (newIsClosed: boolean) => {
@@ -24,11 +22,12 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
+      {/* Header with clickable logo/title for page refresh */}
       <header className="flex justify-between items-center bg-gray-800 text-white p-4 rounded-lg shadow-md">
-        <div className="flex items-center space-x-4">
-          <img src={logo} alt="Company Logo" className="w-20 h-20" />  
+        <a href="/" className="flex items-center space-x-4">
+          <img src={logo} alt="Company Logo" className="w-20 h-20" />
           <h1 className="text-2xl font-bold">Pulsegrip</h1>
-        </div>
+        </a>
         <div className="flex space-x-2">
           <a href="https://github.com/PulseGrip" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">GitHub</a>
           <a href="https://www.youtube.com/BLANK" target="_blank" rel="noopener noreferrer" className="bg-gray-700 text-white px-3 py-1 rounded-md shadow-sm hover:bg-gray-600 transition-all">YouTube</a>
@@ -36,11 +35,19 @@ const HomePage: React.FC = () => {
         </div>
       </header>
 
-      <main className="mt-8">
+      {/* Main content */}
+      <main className="mt-8 space-y-8">
+        {/* Dashboard to monitor and control values */}
         <Dashboard onIsClosedChange={handleIsClosedChange} />
+
+        {/* Game selection buttons */}
         <GameButtons />
+
+        {/* Keybind controls and test area */}
         <Keybinds onChange={handleKeybindChange} isClosed={isClosed} />
         <KeybindTest keybind={keybind} isClosed={isClosed} />
+
+        {/* Team members display */}
         <TeamMembers />
       </main>
     </div>
