@@ -13,7 +13,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
   const [motorAngle, setMotorAngle] = useState(0);
   const [closed, setClosed] = useState(false);
   const [highScore, setHighScore] = useState(0);
-  const [updateTime, setUpdateTime] = useState(6500);
+  const [updateTime, setUpdateTime] = useState(5000);
   const [playingNow, setPlayingNow] = useState(false);
 
   // Get the token from local storage
@@ -21,7 +21,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onIsClosedChange }) => {
 
   const handlePlayingNowCheckbox = () => {
     setPlayingNow(!playingNow);
-    setUpdateTime(!playingNow ? 100 : 6500);
+    setUpdateTime(!playingNow ? 1000 : 5000);
   };
 
   const fetchMachineData = async () => {
