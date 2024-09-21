@@ -8,6 +8,8 @@ Project Page: https://devpost.com/software/pulsegrip https://devpost.com/softwar
 
 GitHub Organization page: https://github.com/PulseGrip
 
+Website: https://hacks.pulsegrip.design (AWS EC2 is down and hand is gone, so wont update anymore)
+
 ![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/1726487473418.jpeg?raw=true)
 
 ![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery%20(1).jpg?raw=true)
