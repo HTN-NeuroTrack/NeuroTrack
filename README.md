@@ -8,6 +8,14 @@ Project Page: https://devpost.com/software/pulsegrip https://devpost.com/softwar
 
 GitHub Organization page: https://github.com/PulseGrip
 
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/1726487473418.jpeg?raw=true)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery%20(1).jpg?raw=true)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery%20(2).jpg?raw=true)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery.jpg?raw=true)
+
 
 ## Inspiration
 Members of our team know multiple people who suffer from permanent or partial paralization. We wanted to build something that could be fun to develop and use, but at the same time make a real impact in people's everyday lives. We also wanted to make an affordable solution, most solutions to paralyzation cost thousands and can't get to everyone. So we wanted something that was modular, that we could 3rd print and also make open source for others to check out.
