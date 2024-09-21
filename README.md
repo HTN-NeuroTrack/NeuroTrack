@@ -1,3 +1,24 @@
+This was my team's winning project. This was in the top 12 out of 239 projects at Hack the North 2024. It is the biggest hackathon in Canada.
+
+This is a full-stack application, with a physical component bionic arm. It can accept WebSocket requests and API requests.
+
+Backend: https://github.com/SamirRSharma/PulseGrip-Backend/
+
+Project Page: https://devpost.com/software/pulsegrip https://devpost.com/software/pulsegrip 
+
+GitHub Organization page: https://github.com/PulseGrip
+
+Website: https://hacks.pulsegrip.design (AWS EC2 is down and hand is gone, so wont update anymore)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/1726487473418.jpeg?raw=true)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery%20(1).jpg?raw=true)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery%20(2).jpg?raw=true)
+
+![Our Project](https://github.com/SamirRSharma/PulseGrip-Frontend/blob/main/pg-fe/gallery.jpg?raw=true)
+
+
 ## Inspiration
 Members of our team know multiple people who suffer from permanent or partial paralization. We wanted to build something that could be fun to develop and use, but at the same time make a real impact in people's everyday lives. We also wanted to make an affordable solution, most solutions to paralyzation cost thousands and can't get to everyone. So we wanted something that was modular, that we could 3rd print and also make open source for others to check out.
 
